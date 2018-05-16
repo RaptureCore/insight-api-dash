@@ -1,26 +1,25 @@
-# Insight API Dash
+# Insight API RAPTURE
+A RAPTURE blockchain REST and web socket API service for Bitcore Node Rapture
 
-A Dash blockchain REST and web socket API service for [Bitcore Node Dash](https://github.com/dashpay/bitcore-node-dash).
-
-This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/dashpay/insight-ui-dash.
+This is a backend-only service.
 
 ## Getting Started
 
 ```bashl
-npm install -g bitcore-node-dash@latest
-bitcore-node-dash create mynode
+npm install -g bitcore-node-rapture@latest
+bitcore-node-rapture create mynode
 cd mynode
-bitcore-node-dash install insight-api-dash
-bitcore-node-dash start
+bitcore-node-rapture install insight-api-rapture
+bitcore-node-rapture start
 ```
 
-The API endpoints will be available by default at: `http://localhost:3001/insight-api-dash/`
+The API endpoints will be available by default at: `http://localhost:3001/insight-api-rapture/`
 
 ## Prerequisites
 
-- [Bitcore Node Dash 3.x](https://github.com/dashpay/bitcore-node-dash)
+- Bitcore Node RAPTURE 3.x
 
-**Note:** You can use an existing Dash data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `dash.conf`, as well as a few other additional fields.
+**Note:** You can use an existing RAPTURE data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `rapture.conf`, as well as a few other additional fields.
 
 ## Notes on Upgrading from v0.3
 
@@ -125,15 +124,15 @@ Or disabled entirely with:
 
 ### Block
 ```
-  /insight-api-dash/block/[:hash]
-  /insight-api-dash/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
+  /insight-api-rapture/block/[:hash]
+  /insight-api-rapture/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
 ```
 
 ### Block Index
 Get block hash by height
 ```
-  /insight-api-dash/block-index/[:height]
-  /insight-api-dash/block-index/0
+  /insight-api-rapture/block-index/[:height]
+  /insight-api-rapture/block-index/0
 ```
 This would return:
 ```
@@ -146,8 +145,8 @@ which is the hash of the Genesis block (0 height)
 
 ### Raw Block
 ```
-  /insight-api-dash/rawblock/[:blockHash]
-  /insight-api-dash/rawblock/[:blockHeight]
+  /insight-api-rapture/rawblock/[:blockHash]
+  /insight-api-rapture/rawblock/[:blockHeight]
 ```
 
 This would return:
@@ -161,7 +160,7 @@ This would return:
 
 Get block summaries by date:
 ```
-  /insight-api-dash/blocks?limit=3&blockDate=2016-04-22
+  /insight-api-rapture/blocks?limit=3&blockDate=2016-04-22
 ```
 
 Example response:
@@ -195,31 +194,31 @@ Example response:
 
 ### Transaction
 ```
-  /insight-api-dash/tx/[:txid]
-  /insight-api-dash/tx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
-  /insight-api-dash/rawtx/[:rawid]
-  /insight-api-dash/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
+  /insight-api-rapture/tx/[:txid]
+  /insight-api-rapture/tx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
+  /insight-api-rapture/rawtx/[:rawid]
+  /insight-api-rapture/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
 ```
 
 ### Address
 ```
-  /insight-api-dash/addr/[:addr][?noTxList=1][&from=&to=]
-  /insight-api-dash/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
-  /insight-api-dash/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&to=2000
+  /insight-api-rapture/addr/[:addr][?noTxList=1][&from=&to=]
+  /insight-api-rapture/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
+  /insight-api-rapture/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&to=2000
 ```
 
 ### Address Properties
 ```
-  /insight-api-dash/addr/[:addr]/balance
-  /insight-api-dash/addr/[:addr]/totalReceived
-  /insight-api-dash/addr/[:addr]/totalSent
-  /insight-api-dash/addr/[:addr]/unconfirmedBalance
+  /insight-api-rapture/addr/[:addr]/balance
+  /insight-api-rapture/addr/[:addr]/totalReceived
+  /insight-api-rapture/addr/[:addr]/totalSent
+  /insight-api-rapture/addr/[:addr]/unconfirmedBalance
 ```
 The response contains the value in Satoshis.
 
 ### Unspent Outputs
 ```
-  /insight-api-dash/addr/[:addr]/utxo
+  /insight-api-rapture/addr/[:addr]/utxo
 ```
 Sample return:
 ```
@@ -250,13 +249,13 @@ Sample return:
 ### Unspent Outputs for Multiple Addresses
 GET method:
 ```
-  /insight-api-dash/addrs/[:addrs]/utxo
-  /insight-api-dash/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
+  /insight-api-rapture/addrs/[:addrs]/utxo
+  /insight-api-rapture/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
 ```
 
 POST method:
 ```
-  /insight-api-dash/addrs/utxo
+  /insight-api-rapture/addrs/utxo
 ```
 
 POST params:
@@ -290,25 +289,25 @@ Sample output:
 
 ### Transactions by Block
 ```
-  /insight-api-dash/txs/?block=HASH
-  /insight-api-dash/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
+  /insight-api-rapture/txs/?block=HASH
+  /insight-api-rapture/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
 ```
 ### Transactions by Address
 ```
-  /insight-api-dash/txs/?address=ADDR
-  /insight-api-dash/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
+  /insight-api-rapture/txs/?address=ADDR
+  /insight-api-rapture/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
 ```
 
 ### Transactions for Multiple Addresses
 GET method:
 ```
-  /insight-api-dash/addrs/[:addrs]/txs[?from=&to=]
-  /insight-api-dash/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20
+  /insight-api-rapture/addrs/[:addrs]/txs[?from=&to=]
+  /insight-api-rapture/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20
 ```
 
 POST method:
 ```
-  /insight-api-dash/addrs/txs
+  /insight-api-rapture/addrs/txs
 ```
 
 POST params:
@@ -355,7 +354,7 @@ Note: if pagination params are not specified, the result is an array of transact
 ### Transaction Broadcasting
 POST method:
 ```
-  /insight-api-dash/tx/send
+  /insight-api-rapture/tx/send
 ```
 POST params:
 ```
@@ -382,7 +381,7 @@ POST response:
 ### Budget Proposal List
 GET method:
 ```
-  /insight-api-dash/gobject/list/proposal
+  /insight-api-rapture/gobject/list/proposal
 ```
 
 Sample output:
@@ -395,7 +394,7 @@ Sample output:
           payment_amount: 5,
           start_epoch: 1482105600,
           type: 1,
-          url: 'https://www.dash.org'
+          url: 'https://www.our-rapture.com'
         },
         AbsoluteYesCount: 40,
         YesCount: 40,
@@ -406,8 +405,8 @@ Sample output:
 ### Budget Proposal Detail
 GET method:
 ```
-  /insight-api-dash/gobject/get/[:hash]
-  /insight-api-dash/gobject/get/b6af3e70c686f660541a77bc035df2e5e46841020699ce3ec8fad786f7d1aa35
+  /insight-api-rapture/gobject/get/[:hash]
+  /insight-api-rapture/gobject/get/b6af3e70c686f660541a77bc035df2e5e46841020699ce3ec8fad786f7d1aa35
 ```
 
 Sample output:
@@ -422,7 +421,7 @@ Sample output:
           payment_amount: 5,
           start_epoch: 1482105600,
           type: 1,
-          url: 'https://www.dash.org'
+          url: 'https://www.our-rapture.com'
         },
         CreationTime: 1482223714,
         FundingResult: {
@@ -454,17 +453,17 @@ Sample output:
 
 ### Historic Blockchain Data Sync Status
 ```
-  /insight-api-dash/sync
+  /insight-api-rapture/sync
 ```
 
 ### Live Network P2P Data Sync Status
 ```
-  /insight-api-dash/peer
+  /insight-api-rapture/peer
 ```
 
 ### Status of the Bitcoin Network
 ```
-  /insight-api-dash/status?q=xxx
+  /insight-api-rapture/status?q=xxx
 ```
 
 Where "xxx" can be:
@@ -477,7 +476,7 @@ Where "xxx" can be:
 
 ### Utility Methods
 ```
-  /insight-api-dash/utils/estimatefee[?nbBlocks=2]
+  /insight-api-rapture/utils/estimatefee[?nbBlocks=2]
 ```
 
 
